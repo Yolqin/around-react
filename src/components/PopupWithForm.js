@@ -1,17 +1,19 @@
 import React from "react";
 
-function PopupWithForm({name, type, title, isOpen, onClose, submitText, children}) {
+function PopupWithForm(props) {
     return (
-        <div className={`page__dialog_type_${name} dialog ${isOpen && 'dialog_open'}`}>
+        <div className={`page__dialog_type_${props.name} dialog ${props.isOpen && 'dialog_open'}`}>
             <div className="dialog__container">
-                <button className="dialog__close-button" type="button" name="close button" onClick={onClose}/>
-                <form action="#" className={`dialog__form dialog__form_type_${type}`} method="post"
-                      name="profile-edit">
+                <button className="dialog__close-button" type="button" name="close button" onClick={props.onClose}/>
+                <form action="#" className={`dialog__form dialog__form_type_${props.type}`} method="post"
+                      name="profile-edit"
+                      onSubmit={props.onSubmit}
+                >
                     <h3 className="dialog__header">
-                        {title}
+                        {props.title}
                     </h3>
-                    {children}
-                    <button type="submit" className="dialog__button">{submitText}</button>
+                    {props.children}
+                    <button type="submit" className="dialog__button">{props.submitText}</button>
                 </form>
             </div>
         </div>

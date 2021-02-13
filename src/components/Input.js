@@ -1,20 +1,21 @@
 import React from "react";
 
-function Input({type, name, errorId, inputType, placeholder, minLength, maxLength}) {
+function Input(props) {
     return (
         <>
             <input
-                type={type}
-                name={name}
-                className={`dialog__input dialog__input_type_${inputType}`}
-                placeholder={placeholder}
+                type={props.type}
+                name={props.name}
+                className={`dialog__input dialog__input_type_${props.inputType}`}
+                placeholder={props.placeholder}
                 required
-                minLength={minLength}
-                maxLength={maxLength}
+                minLength={props.minLength}
+                maxLength={props.maxLength}
+                onChange={props.handleChange}
             />
 
             <span
-                id={errorId}
+                id={props.errorId}
                 className="dialog__error"
             />
         </>

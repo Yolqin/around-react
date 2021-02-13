@@ -58,17 +58,24 @@ class Api {
       .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
   }
 
-  setUserInfo({ name, job }) {
-    return fetch(this._baseUrl + '/users/me', {
-      headers: this._headers,
-      method: "PATCH",
-      body: JSON.stringify({
-        name,
-        about: job
-      })
-    })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+  updateLikes(cardId, liked) {
+    let method= 'DELETE';
+    if(liked) method= 'PUT';
+
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      method: method,
+      headers: this._headers
+    }).then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText));
   }
+
+    setUserInfo(data) {
+        return fetch(this._baseUrl + '/users/me', {
+            headers: this._headers,
+            method: "PATCH",
+            body: JSON.stringify(data)
+        })
+            .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    }
 
   setUserAvatar({avatar}) {
     return fetch(this._baseUrl + '/users/me/avatar', {
