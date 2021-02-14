@@ -22,8 +22,7 @@ function App() {
 
     useEffect(() => {
         Promise.all([api.getUserInfo(), api.getInitialCards({})])
-            .then(data => {
-                const [user, initialCards] = data;
+            .then(([user, initialCards]) => {
                 setCurrentUser(user)
                 setCards(initialCards)
             })
@@ -66,10 +65,12 @@ function App() {
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-        api.updateLikes(card._id, !isLiked).then((newCard) => {
+        api.updateLikes(card._id, !isLiked)
+            .then((newCard) => {
             const newCards = cards.map((c) => c._id === card._id ? newCard : c);
             setCards(newCards);
-        });
+        })
+            .catch(err => console.log(err))
     }
 
     function handleUpdateUser(userData) {

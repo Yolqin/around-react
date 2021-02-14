@@ -12,6 +12,7 @@ function Input(props) {
                 minLength={props.minLength}
                 maxLength={props.maxLength}
                 onChange={props.handleChange}
+                value={props.value}
             />
 
             <span

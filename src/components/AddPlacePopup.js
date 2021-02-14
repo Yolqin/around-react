@@ -13,6 +13,9 @@ function AddPlacePopup(props) {
             name,
             link
         });
+        setName('');
+        setLink('');
+        console.log(name,link);
     }
 
     function handleNameChange(e) {
@@ -42,6 +45,7 @@ function AddPlacePopup(props) {
                 maxLength='30'
                 errorId='card__title_error'
                 handleChange={handleNameChange}
+                value={name}
             />
             <Input
                 type='url'
@@ -51,6 +55,7 @@ function AddPlacePopup(props) {
                 required
                 errorId='card__url_error'
                 handleChange={handleLinkChange}
+                value={link}
             />
         </PopupWithForm>
     )

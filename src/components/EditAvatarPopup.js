@@ -8,10 +8,6 @@ function EditAvatarPopup(props) {
 
     const [avatar, setAvatar] = React.useState('');
 
-    useEffect(() => {
-        setAvatar(currentUser.avatar);
-    }, [currentUser]);
-
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -41,6 +37,7 @@ function EditAvatarPopup(props) {
                 required
                 errorId='card__url-avatar_error'
                 handleChange={handleAvatarChange}
+                value={avatar}
             />
         </PopupWithForm>
     )
